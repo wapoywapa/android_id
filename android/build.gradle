@@ -12,6 +12,7 @@ android {
 
     defaultConfig {
         minSdk = 21
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     compileOptions {
@@ -24,15 +25,15 @@ android {
     }
 
     sourceSets {
-        main.java.srcDirs += "src/main/kotlin"
-        test.java.srcDirs += "src/test/kotlin"
+        getByName("main").java.srcDirs("src/main/kotlin")
+        getByName("test").java.srcDirs("src/test/kotlin")
     }
 
     testOptions {
         unitTests.all {
             useJUnitPlatform()
             testLogging {
-                events "passed", "skipped", "failed", "standardOut", "standardError"
+                events("passed", "skipped", "failed", "standardOut", "standardError")
                 outputs.upToDateWhen { false }
                 showStandardStreams = true
             }
