@@ -1,6 +1,9 @@
 plugins {
     id 'com.android.library'
-    id 'org.jetbrains.kotlin.android'
+}
+
+buildscript {
+    ext.kotlin_version = "1.9.23" // this one is safe with AGP 8.1.4
 }
 
 group = "dev.fluttercommunity.android_id"
@@ -25,8 +28,12 @@ android {
     }
 
     sourceSets {
-        getByName("main").java.srcDirs("src/main/kotlin")
-        getByName("test").java.srcDirs("src/test/kotlin")
+        main {
+            java.srcDirs("src/main/kotlin")
+        }
+        test {
+            java.srcDirs("src/test/kotlin")
+        }
     }
 
     testOptions {
