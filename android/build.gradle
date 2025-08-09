@@ -1,54 +1,26 @@
 plugins {
     id 'com.android.library'
-}
-
-buildscript {
-    ext.kotlin_version = "1.9.23" // this one is safe with AGP 8.1.4
+    id 'org.jetbrains.kotlin.android'
 }
 
 group = "dev.fluttercommunity.android_id"
-version = "1.0-SNAPSHOT"
 
 android {
-    namespace = "dev.fluttercommunity.android_id"
-    compileSdk = 34
+    namespace "dev.fluttercommunity.android_id"
+    compileSdk 34
 
     defaultConfig {
-        minSdk = 21
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        minSdk 21
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
-
     kotlinOptions {
         jvmTarget = "17"
     }
-
-    sourceSets {
-        main {
-            java.srcDirs("src/main/kotlin")
-        }
-        test {
-            java.srcDirs("src/test/kotlin")
-        }
-    }
-
-    testOptions {
-        unitTests.all {
-            useJUnitPlatform()
-            testLogging {
-                events("passed", "skipped", "failed", "standardOut", "standardError")
-                outputs.upToDateWhen { false }
-                showStandardStreams = true
-            }
-        }
-    }
 }
 
-dependencies {
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
-    testImplementation("org.mockito:mockito-core:5.12.0")
-}
+// no custom sourceSets, testOptions, or buildscript blocks
+// no extra dependencies needed for this plugin
